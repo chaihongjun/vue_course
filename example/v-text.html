@@ -3,7 +3,7 @@
 * @FileName:v-text.html
 * @Date:   2017-12-27 17:51:25
 * @Last Modified by:   chj
-* @Last Modified time: 2017-12-27 17:56:30
+* @Last Modified time: 2017-12-27 18:06:23
 -->
 <!DOCTYPE html>
 <html lang="cmn-hans">
@@ -22,10 +22,15 @@
     <h3>v-text & v-html </h3>
     <hr>
     <div id="app">
-<!--
-    <span>{{message}}</span> -->
 
+    <span>{{message}}</span> <!-- 速度慢，会显示{{message}} -->
 <span v-text="message">如果速度慢，会显示这个</span>
+
+  <span>{{dodo}}</span>
+
+<span v-html="dodo"></span>
+
+<span v-text="dodo"></span>
 
 
     </div>
@@ -33,7 +38,8 @@
     var app = new Vue({
         el: "#app",
         data: {
-            message: "hello v-text & v-html!"
+            message: "hello v-text & v-html!",
+            dodo:"<h3>hello world!</h3>"
         }
     })
     </script>
