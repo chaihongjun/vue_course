@@ -1,0 +1,49 @@
+<!--
+* @Author: chj
+* @FileName:v-on.html
+* @Date:   2018-01-02 11:32:27
+* @Last Modified by:   chj
+* @Last Modified time: 2018-01-02 11:36:13
+-->
+<!DOCTYPE html>
+<html lang="cmn-hans">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
+    <!--PC端必选   强制360浏览器使用webkit渲染 -->
+    <meta name="renderer" content="webkit">
+    <!-- 必选 响应式  -->
+    <script src="../assets/js/vue.js"></script>
+    <title>v-on实例</title>
+</head>
+
+<body>
+    <h1>v-on 事件监听器</h1>
+    <hr>
+    <div id="app">
+       本场比赛得分： {{count}}<br/>
+       <button v-on:click="jiafen">加分</button>
+       <button @click="jianfen">减分</button>
+
+    </div>
+
+    <script type="text/javascript">
+        var app=new Vue({
+            el:'#app',
+            data:{
+                count:1
+            },
+            methods:{
+                jiafen:function(){
+                    this.count++;
+                },
+                jianfen:function(){
+                    this.count--;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
