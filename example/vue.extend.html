@@ -15,11 +15,11 @@
     <h3>vue.extend扩展器延伸</h3>
     <hr>
     <!--  显示作者 -->
-    <author></author>
+    <div id="author"></div>
     <script>
     //扩展实例构造器
     var authorExtend = Vue.extend({
-        template: '<p><a  v-bind:href="authorUrl">{{authorName}}</a></p>',
+        template: '<p><a  :href="authorUrl">{{authorName}}</a></p>',
         data: function() {
             return {
                 authorName: 'baidu',
@@ -28,7 +28,7 @@
         }
     });
 //扩展器需要加载到DOM
- new authorExtend().$mount('author');
+ new authorExtend().$mount('#author');
 
 
 

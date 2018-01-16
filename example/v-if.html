@@ -28,12 +28,25 @@
         <div v-else="isLogin">
             你好，请先登录！
         </div>
+        <div v-show="isLogin">
+            v-show
+        </div>
+        <button @click="change">改变button</button>
     </div>
     <script>
     var app = new Vue({
         el: "#app",
         data: {
             isLogin: false
+        },
+        methods: {
+            change: function() {
+
+                        this.isLogin=!this.isLogin;
+
+
+
+            }
         }
     })
     </script>
