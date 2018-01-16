@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="cmn-hans">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
+    <script src="https://js.hzshuangmei.com/m/mobile-util.js"></script>
+    <!--PC端必选   强制360浏览器使用webkit渲染 -->
+    <meta name="renderer" content="webkit">
+    <!--必选  for PC -->
+    <meta name=applicable-device content="mobile">
+    <!-- PC端必选  禁止百度转码 -->
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta>
+    <style>
+    body {
+        height: 6000px;
+    }
+    /*popup*/
+
+    body .popup {
+        width: 80%!important;
+    }
+
+    body .popup .layui-m-layerbtn .never {
+        color: #999;
+        border: 1px solid #cecece;
+        background-color: #fff;
+        font-size: 0.8rem;
+        border-top: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    body .popup .layui-m-layerbtn span[no] {
+        color: #7d64c3;
+        border: 1px solid #cbbeef;
+        background-color: #fff;
+        font-size: 0.8rem;
+        border-top: 0;
+        border-left:0;
+        border-right:0;
+    }
+
+    body .popup .layui-m-layerbtn span[yes] {
+        color: #fff;
+        border: 1px solid #dedede;
+        background-color: #7d64c3;
+        font-size: 0.8rem;
+        border-top: 0;
+            border-bottom-left-radius: 0;
+    }
+
+    body .popup .layui-m-layercont img {
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+        display: block;
+    }
+
+    body .popup .layui-m-layerbtn {
+        display: -webkit-box;
+        width: 100%;
+        height: 2rem!important;
+        line-height: 2rem!important;
+        font-size: 0;
+        border-top: 1px solid #D0D0D0;
+        background-color: #F2F2F2;
+    }
+    </style>
+    <title>弹窗页面</title>
+</head>
+
+<body>
+    This is html5 pc demo!
+</body>
+
+</html>
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="layer/mobile/layer.js"></script>
+<script>
+function popup() {
+    //get current page filename
+    var target = window.location.href;
+    var filename = window.location.pathname.split("/")[window.location.pathname.split("/").length - 1].split(".")[0];
+    var timer = null;
+    //如果当前页面没有对应弹窗图片，则使用默认的图片default.png
+    if (filename == "") {
+        filename = "default";
+    }
+    //不永远关闭弹窗
+    var flag = 0;
+    layer.open({
+        type: 1,
+        anim: 'up',
+        shade: 0,
+        shadeClose: true,
+        className: 'popup',
+        //  time:5,     //弹窗停留时间
+        btn: ['立即咨询', '一会再看'],
+        no: function(index, layero) {
+            //按钮【稍后了解】的回调
+            //暂时关闭弹窗
+            flag = 0;
+            layer.close(index);
+        },
+        yes: function(index, layero) {
+            //按钮【立即了解】的回调
+            //return false 开启该代码可禁止点击该按钮关闭
+            //打开快商通
+            //永久关闭弹窗
+            flag = 1;
+            window.open("https://ryak66.kuaishang.cn/bs/mim/68948/58194/765150.htm?ref=m_popup&" + target);
+            layer.close(index);
+        },
+         content: '<img src="//img.hzshuangmei.com/pc/kst/' +filename +'.png'+'"'+'/>',
+        end: function() {
+            if (flag == 1) {
+                // 永远关闭弹窗
+                window.clearTimeout(timer);
+            } else {
+                timer = setTimeout(popup, 9000);
+            }
+        }
+    });
+    //创建第三个按钮 “不再提示”
+    $(".layui-m-layerbtn").prepend('<span class="never" id="never">不再提示</span>');
+    // "不再提示"按钮绑定点击事件
+    $(".layui-m-layerbtn").on('click', "#never", function() {
+        //点击之后清除循环定时器
+        flag = 1;
+        layer.closeAll();
+    });
+}
+popup();
+</script>
