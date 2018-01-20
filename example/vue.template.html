@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="cmn-hans">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
@@ -10,27 +9,20 @@
     <script src="../assets/js/vue.js"></script>
     <title>template模板三种写法</title>
 </head>
-
 <body>
     <h3>template模板三种写法</h3>
     <hr>
     <div id="app">
         {{message}}
     </div>
-
    <!-- 方法2 -->
   <template id="tmpl">
       <h2 style="color:red">我是template标签模板</h2>
   </template>
    <!-- 方法3 -->
-
       <script type='x-template' id="tmpl-x">
            <h2 style="color:red">我是 script 标签模板</h2>
       </script>
-
-
-
-
     <script>
     var app = new Vue({
         el: "#app",
@@ -41,15 +33,11 @@
     //     template:`
     // <h2 style="color:red">我是Vue选项模板</h2>
     //     `
-
    //方法2
    template:'#tmpl',
-
    //方法3
   template:'#tmpl-x',
-
     })
     </script>
 </body>
-
 </html>

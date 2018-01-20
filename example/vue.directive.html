@@ -3,7 +3,7 @@
 * @FileName:vue.directive.html
 * @Date:   2018-01-02 11:41:22
 * @Last Modified by:   chj
-* @Last Modified time: 2018-01-05 15:42:31
+* @Last Modified time: 2018-01-20 13:42:50
 -->
 <!DOCTYPE html>
 <html lang="cmn-hans">
@@ -23,7 +23,7 @@
         <div v-text="html"></div>
         <div :class="classname">{{num+1}}</div>
           <!-- 自定义指令  change  针对的是属性-->
-        <div v-change="color">{{num}}</div>
+        <div v-change="color2">{{num}}</div>
         <p>
             <button @click="add">ADD</button>
         </p>
@@ -33,34 +33,34 @@
     </div>
     <script>
         function unbind(){
-
                             app.$destroy();
-
-
         }
 
-
-
-
     //定义自定义指令
-    Vue.directive("change", {
+                Vue.directive("change", {
         bind: function(el, binding) {
             el.style = 'color:' + binding.value;
+              console.log('bind');
+            console.log('binding:');
             console.log(binding);
+            console.log('el:');
             console.log(el);
+            console.log('binding.expression:');
             console.log(binding.expression);
         },
         update:function(el, binding){
             //           console.log(binding);
             // console.log(el);
             // console.log(binding.expression);
-            el.style = 'color:' +this.color2;
+                 console.log('updated:');
+               console.log(el);
+            el.style = 'color:' +this.color;
         },
         unbind:function(el,binding){
             console.log('unbind');
         }
     });
-    var app = new Vue({
+            var app = new Vue({
         el: "#app",
         data: {
             num: 1,
@@ -74,7 +74,8 @@
                 this.num++;
             }
         }
-    })
+    });
+
     </script>
 </body>
 </html>
