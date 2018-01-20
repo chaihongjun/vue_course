@@ -15,32 +15,46 @@
     <h3>Vue component组件 初识</h3>
     <hr>
     <div id="app">
-<!--   使用局部组件 chj-->
-        <local  :here="local"></local>
+        <!--   使用局部组件 chj-->
+        <!-- <local  :here="local"></local> -->
+        <local :here="local"></local>
+        <remote></remote>
     </div>
     <script>
     var app = new Vue({
         el: "#app",
-        data:{
-            local:'china',
+        // data:{
+        //     local:'china',
+        //   //  remote:'USA'
+        // },
+        data: {
+            local: 'China',
+            remote: 'USA_main'
         },
         // <!-- 定义局部组件 -->
         components: {
+            'remote': {
+                template: `<p>我是局部组件remote来自{{remote}}</p>`,
+                data: function() {
+                    return { remote: 'USA_components' }
+                }
+            },
             'local': {
                 template: `
           <div style="color:green">
       我是局部组件local,来自{{here}}
   </div>
          `,
-         //选项props 数值
-     props:['here'],
-
-
-
-            }
+                //选项props 数值
+                props: ['here'],
+                data: function() {
+                    return {
+                        local: 'china_mainland'
+                    }
+                }
+            },
         }
     });
-
     </script>
 </body>
 
