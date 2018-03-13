@@ -23,29 +23,19 @@
     <script>
     var app = new Vue({
         el: "#app",
-        // data:{
-        //     local:'china',
-        //   //  remote:'USA'
-        // },
         data: {
             local: 'China',
             remote: 'USA_main'
         },
         // <!-- 定义局部组件 -->
         components: {
-            'remote': {
-                template: `<p>我是局部组件remote来自{{remote}}</p>`,
-                data: function() {
-                    return { remote: 'USA_components' }
-                }
-            },
             'local': {
                 template: `
           <div style="color:green">
       我是局部组件local,来自{{here}}
   </div>
          `,
-                //选项props 数值
+          //选项props 数值
                 props: ['here'],
                 data: function() {
                     return {
@@ -53,6 +43,15 @@
                     }
                 }
             },
+            'remote': {
+                template: `<p   :style="colour">我是局部组件remote来自{{remote}}</p>`,
+                data: function() {
+                    return {
+                       remote: 'USA_components',
+                        colour:'color:red'
+                   }
+                }
+            }
         }
     });
     </script>

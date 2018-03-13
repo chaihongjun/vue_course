@@ -1,0 +1,60 @@
+<!--
+* @Author: chj
+* @FileName:computed.html
+* @Date:   2018-03-13 10:07:29
+* @Last Modified by:   chj
+* @Last Modified time: 2018-03-13 10:59:48
+-->
+<!DOCTYPE html>
+<html lang="cmn-hans">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
+    <!--PC端必选   强制360浏览器使用webkit渲染 -->
+    <meta name="renderer" content="webkit">
+    <!-- 必选 响应式  -->
+    <script src="../assets/js/vue.js"></script>
+    <title>computed 计算属性</title>
+</head>
+
+<body>
+    <h3>computed 计算属性</h3>
+    <hr>
+    <div id="app">
+        {{newPrice}}
+        <br> {{newslist}}
+    </div>
+    <script>
+    //   var    newsList =[
+    //     { title: '香港或就“装甲车被扣”事件追责 起诉涉事运输公司', date: '2017/3/10' },
+    //     { title: '日本第二大准航母服役 外媒：针对中国潜艇', date: '2017/3/12' },
+    //     { title: '中国北方将有明显雨雪降温天气 南方阴雨持续', date: '2017/3/13' },
+    //     { title: '起底“最短命副市长”：不到40天落马，全家被查', date: '2017/3/23' },
+    // ];
+    var app = new Vue({
+        el: "#app",
+        data: {
+            price: 100,
+            newsList: [
+                { title: '香港或就“装甲车被扣”事件追责 起诉涉事运输公司', date: '2017/3/10' },
+                { title: '日本第二大准航母服役 外媒：针对中国潜艇', date: '2017/3/12' },
+                { title: '中国北方将有明显雨雪降温天气 南方阴雨持续', date: '2017/3/13' },
+                { title: '起底“最短命副市长”：不到40天落马，全家被查', date: '2017/3/23' },
+            ],
+        },
+        computed: {
+            newPrice: function() {
+                return this.price = '￥' + this.price + '元';
+            },
+            newslist: function() {
+                for (var i = 0; i < this.newsList; i++) {
+                    return '<li>' + this.newsList[i].title + '-' + this.newsList[i].date + '</li>';
+                }
+            }
+        }
+    })
+    </script>
+</body>
+
+</html>

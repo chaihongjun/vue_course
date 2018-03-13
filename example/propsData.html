@@ -1,0 +1,36 @@
+<!--
+* @Author: chj
+* @FileName:propsData.html
+* @Date:   2018-03-13 09:43:24
+* @Last Modified by:   chj
+* @Last Modified time: 2018-03-13 09:48:52
+-->
+<!DOCTYPE html>
+<html lang="cmn-hans">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
+    <!--PC端必选   强制360浏览器使用webkit渲染 -->
+    <meta name="renderer" content="webkit">
+    <!-- 必选 响应式  -->
+    <script src="../assets/js/vue.js"></script>
+    <title>propsData 全局扩展的数据传递</title>
+</head>
+<body>
+    <h3>propsData </h3>
+<!--     全局扩展标签 -->
+    <header></header>
+<script>
+ var  header_a = Vue.extend({
+           template:`<p>{{message}}</p>`,
+           data:function(){
+               return {
+                   message:'Hello,I am Header'
+               }
+           },
+           props:['a']
+       });
+     new header_a({propsData:{a:1}}).$mount('header');
+</script>
+</body>
+</html>

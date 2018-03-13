@@ -1,0 +1,61 @@
+<!--
+* @Author: chj
+* @FileName:instance.html
+* @Date:   2018-03-13 13:57:57
+* @Last Modified by:   chj
+* @Last Modified time: 2018-03-13 16:59:48
+-->
+<!DOCTYPE html>
+<html lang="cmn-hans">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
+    <!--PC端必选   强制360浏览器使用webkit渲染 -->
+    <meta name="renderer" content="webkit">
+    <!-- 必选 响应式  -->
+    <script src="../assets/js/vue.js"></script>
+        <script src="../assets/js/jquery.js"></script>
+    <title>Jquery</title>
+</head>
+<body>
+    <h1>Slot content extend Demo</h1>
+    <hr>
+    <div id="app">
+    <jspang>
+        <span slot="bolgUrl">{{jspangData.bolgUrl}}</span>
+        <span slot="netName">{{jspangData.netName}}</span>
+        <span slot="skill">{{jspangData.skill}}</span>
+    </jspang>
+    </div>
+
+
+<template id="tmp">
+    <div>
+        <p>博客地址：<slot name="bolgUrl"></slot></p>
+        <p>网名：<slot name="netName"></slot></p>
+        <p>技术类型：<slot name="skill"></slot></p>
+
+    </div>
+</template>
+
+    <script type="text/javascript">
+        var jspang={
+            template:'#tmp'
+        }
+
+        var app=new Vue({
+            el:'#app',
+            data:{
+               jspangData:{
+                   bolgUrl:'http://jspang.com',
+                   netName:'技术胖',
+                   skill:'Web前端'
+               }
+            },
+            components:{
+                "jspang":jspang
+            }
+        })
+    </script>
+</body>
+</html>
